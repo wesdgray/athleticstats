@@ -9,7 +9,14 @@
 				</game-status>
 				
 				<time>
-					<xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
+					<xsl:choose>
+					<xsl:when test="not(gamestate/@second)">
+						15:00
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
+					</xsl:otherwise>
+					</xsl:choose>
 				</time>
 				
 				<quarter>
@@ -21,11 +28,15 @@
 				</start-time>
 				
 				<home-rank>
-					<xsl:value-of select="home-team/team-rank/@rank"/>
+					<xsl:if test="home-team/team-rank/@rank != 0">
+						<xsl:value-of select="home-team/team-rank/@rank"/>
+					</xsl:if>
 				</home-rank>
 				
 				<home-playoff-rank>
-					<xsl:value-of select="home-team/team-rank/@playoff-rank"/>
+					<xsl:if test="home-team/team-rank/@playoff-rank != 0">
+						<xsl:value-of select="home-team/team-rank/@playoff-rank"/>
+					</xsl:if>
 				</home-playoff-rank>
 				
 				<home-city>
@@ -37,11 +48,15 @@
 				</home-score>
 				
 				<visitor-rank>
-					<xsl:value-of select="visiting-team/team-rank/@rank"/>
+					<xsl:if test="visiting-team/team-rank/@rank != 0">
+						<xsl:value-of select="visiting-team/team-rank/@rank"/>
+					</xsl:if>
 				</visitor-rank>
 				
 				<visitor-playoff-rank>
-					<xsl:value-of select="visiting-team/team-rank/@playoff-rank"/>
+					<xsl:if test="visiting-team/team-rank/@playoff-rank != 0">
+						<xsl:value-of select="visiting-team/team-rank/@playoff-rank"/>
+					</xsl:if>
 				</visitor-playoff-rank>
 				
 				<visitor-city>
