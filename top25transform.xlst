@@ -3,46 +3,57 @@
 <xsl:output method="xml" indent="yes"/>
 	<xsl:template match="/">
 		<xsl:for-each select="//cfb-score[home-team[team-rank[@rank &lt;= 25 and @rank &gt; 0]] or visiting-team[team-rank[@rank &lt; 25 and @rank &gt; 0]]]">
-		<xsl:element name="global-id-{gamecode/@global-id}">
-		<game-status>
-			
-		</game-status>
-		<time>
-			
-		</time>
-		<quarter>
-			
-		</quarter>
-		<start-time>
-			
-		</start-time>
-		<home-rank>
-			
-		</home-rank>
-		<home-playoff-rank>
-			
-		</home-playoff-rank>
-		<home-city>
-			
-		</home-city>
-		<home-score>
-			
-		</home-score>
-		<visitor-rank>
-			
-		</visitor-rank>
-		<visitor-playoff-rank>
-			
-		</visitor-playoff-rank>
-		<visitor-city>
-			
-		</visitor-city>
-		<visitor-score>
-			
-		</visitor-score>
-</xsl:element>
+			<xsl:element name="global-id-{gamecode/@global-id}">
+				<game-status>
+					<xsl:value-of select="gamestate/@status"/>
+				</game-status>
+				
+				<time>
+					<xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
+				</time>
+				
+				<quarter>
+					<xsl:value-of select="gamestate/@quarter"/>
+				</quarter>
+				
+				<start-time>
+					<xsl:value-of select="local-time/@hour"/>:<xsl:value-of select="local-time/@minute"/>
+				</start-time>
+				
+				<home-rank>
+					<xsl:value-of select="home-team/team-rank/@rank"/>
+				</home-rank>
+				
+				<home-playoff-rank>
+					<xsl:value-of select="home-team/team-rank/@playoff-rank"/>
+				</home-playoff-rank>
+				
+				<home-city>
+					<xsl:value-of select="home-team/team-city/@city"/>
+				</home-city>
+				
+				<home-score>
 
-</xsl:for-each>
+				</home-score>
+				
+				<visitor-rank>
+					<xsl:value-of select="visiting-team/team-rank/@rank"/>
+				</visitor-rank>
+				
+				<visitor-playoff-rank>
+					<xsl:value-of select="visiting-team/team-rank/@playoff-rank"/>
+				</visitor-playoff-rank>
+				
+				<visitor-city>
+					<xsl:value-of select="visiting-team/team-city/@city"/>
+				</visitor-city>
+				
+				<visitor-score>
+
+				</visitor-score>
+			</xsl:element>
+
+		</xsl:for-each>
 
 	</xsl:template>
 </xsl:stylesheet>
