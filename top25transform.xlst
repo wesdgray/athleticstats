@@ -4,7 +4,10 @@
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:template match="/">
 <xsl:for-each select="//cfb-score[home-team[team-rank[@rank &lt;= 25 and @rank &gt; 0]] or visiting-team[team-rank[@rank &lt; 25 and @rank &gt; 0]]]">
+<attr><xsl:value-of select="//date/@year"/></attr>
+<xsl:element name="game{//date/@year}">test </xsl:element>
 
 </xsl:for-each>
+
 	</xsl:template>
 </xsl:stylesheet>
