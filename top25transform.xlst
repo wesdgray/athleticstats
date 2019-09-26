@@ -1,11 +1,46 @@
 <?xml version="1.0"?>
-<xsl:stylesheet
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-	<xsl:output method="xml" indent="yes"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:output method="xml" indent="yes"/>
 	<xsl:template match="/">
-<xsl:for-each select="//cfb-score[home-team[team-rank[@rank &lt;= 25 and @rank &gt; 0]] or visiting-team[team-rank[@rank &lt; 25 and @rank &gt; 0]]]">
-<attr><xsl:value-of select="//date/@year"/></attr>
-<xsl:element name="game{//date/@year}">test </xsl:element>
+		<xsl:for-each select="//cfb-score[home-team[team-rank[@rank &lt;= 25 and @rank &gt; 0]] or visiting-team[team-rank[@rank &lt; 25 and @rank &gt; 0]]]">
+		<xsl:element name="global-id-{gamecode/@global-id}">
+		<game-status>
+			
+		</game-status>
+		<time>
+			
+		</time>
+		<quarter>
+			
+		</quarter>
+		<start-time>
+			
+		</start-time>
+		<home-rank>
+			
+		</home-rank>
+		<home-playoff-rank>
+			
+		</home-playoff-rank>
+		<home-city>
+			
+		</home-city>
+		<home-score>
+			
+		</home-score>
+		<visitor-rank>
+			
+		</visitor-rank>
+		<visitor-playoff-rank>
+			
+		</visitor-playoff-rank>
+		<visitor-city>
+			
+		</visitor-city>
+		<visitor-score>
+			
+		</visitor-score>
+</xsl:element>
 
 </xsl:for-each>
 
