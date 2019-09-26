@@ -1,0 +1,1 @@
+//cfb-score[home-team[team-rank[@rank <= 25 and @rank > 0]] or visiting-team[team-rank[@rank <= 25 and @rank > 0]]]
