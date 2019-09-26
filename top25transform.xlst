@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<xsl:stylesheet
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="xml" indent="yes"/>
+	<xsl:template match="/">
+<xsl:for-each select="//cfb-score[home-team[team-rank[@rank &lt;= 25 and @rank &gt; 0]] or visiting-team[team-rank[@rank &lt; 25 and @rank &gt; 0]]]">
+
+</xsl:for-each>
+	</xsl:template>
+</xsl:stylesheet>
