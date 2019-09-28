@@ -5,6 +5,35 @@
     	<games>
             <xsl:for-each select="//cfb-score">
                 <xsl:element name="global-id-{gamecode/@global-id}">
+                	
+                    <xsl:variable name="Pacific24Hour">
+                    	<xsl:choose>
+                    		<xsl:when test="time/@hour = 1">
+                            	<xsl:value-of select="22"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                            	<xsl:choose>
+                                	<xsl:when test="time/@hour = 2">
+                                    	<xsl:value-of select="23"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                    	<xsl:choose>
+                                        	<xsl:when test="time/@hour = 3">
+                                            	<xsl:value-of select="24"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                            	<xsl:value-of select="time/@hour - 3"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                	<xsl:variable name="StartHour" select="$Pacific24Hour - (12 * ($Pacific24Hour > 12)) + (12 * ($Pacific24Hour = 0))"/>
+                    <xsl:variable name="StartMinute" select="time/@minute"/>
+                    <xsl:variable name="StartAMPM" select="substring(' AM PM', 3 + ($Pacific24Hour >= 12), 3)"/>
+                    
                     <game-status>
                         <xsl:value-of select="gamestate/@status"/>
                     </game-status>
@@ -21,9 +50,9 @@
 					<game-details>
                         <xsl:choose>
                         <xsl:when test="gamestate/@status = 'Pre-Game'">
-                        	<xsl:value-of select="time/@hour - (12 * (time/@hour > 12)) + (12 * (time/@hour = 0))" />:<xsl:value-of select="time/@minute"/> <xsl:value-of select="substring(' AM PM', 3 + (time/@hour >= 12), 3)" />
+                        	<xsl:value-of select="$StartHour"/>:<xsl:value-of select="$StartMinute"/><xsl:value-of select="$StartAMPM"/>
                         </xsl:when>
-                        <xsl:when test="gamestate/@status = 'In-Game'">
+                        <xsl:when test="gamestate/@status = 'In-Progress'">
                         	<xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
 <xsl:if test="gamestate/@quarter = 1"> - 1st Qtr</xsl:if>
 <xsl:if test="gamestate/@quarter = 2"> - 2nd Qtr</xsl:if>
@@ -49,7 +78,7 @@
                     </quarter>
                     
                     <start-time>
-                  		<xsl:value-of select="time/@hour - (12 * (time/@hour > 12)) + (12 * (time/@hour = 0))" />:<xsl:value-of select="time/@minute"/> <xsl:value-of select="substring(' AM PM', 3 + (time/@hour >= 12), 3)" />
+                  		<xsl:value-of select="$StartHour"/>:<xsl:value-of select="$StartMinute"/><xsl:value-of select="$StartAMPM"/>
                     </start-time>
                     
                     <home-rank>
