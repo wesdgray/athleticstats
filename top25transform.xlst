@@ -1,74 +1,99 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:output method="xml" indent="yes"/>
-	<xsl:template match="/">
-		<xsl:for-each select="//cfb-score[home-team[team-rank[@rank &lt;= 25 and @rank &gt; 0]] or visiting-team[team-rank[@rank &lt; 25 and @rank &gt; 0]]]">
-			<xsl:element name="global-id-{gamecode/@global-id}">
-				<game-status>
-					<xsl:value-of select="gamestate/@status"/>
-				</game-status>
-				
-				<time>
-					<xsl:choose>
-					<xsl:when test="not(gamestate/@second)">
-						15:00
-					</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
-					</xsl:otherwise>
-					</xsl:choose>
-				</time>
-				
-				<quarter>
-					<xsl:value-of select="gamestate/@quarter"/>
-				</quarter>
-				
-				<start-time>
-					<xsl:value-of select="local-time/@hour"/>:<xsl:value-of select="local-time/@minute"/>
-				</start-time>
-				
-				<home-rank>
-					<xsl:if test="home-team/team-rank/@rank != 0">
-						<xsl:value-of select="home-team/team-rank/@rank"/>
-					</xsl:if>
-				</home-rank>
-				
-				<home-playoff-rank>
-					<xsl:if test="home-team/team-rank/@playoff-rank != 0">
-						<xsl:value-of select="home-team/team-rank/@playoff-rank"/>
-					</xsl:if>
-				</home-playoff-rank>
-				
-				<home-city>
-					<xsl:value-of select="home-team/team-city/@city"/>
-				</home-city>
-				
-				<home-score>
-
-				</home-score>
-				
-				<visitor-rank>
-					<xsl:if test="visiting-team/team-rank/@rank != 0">
-						<xsl:value-of select="visiting-team/team-rank/@rank"/>
-					</xsl:if>
-				</visitor-rank>
-				
-				<visitor-playoff-rank>
-					<xsl:if test="visiting-team/team-rank/@playoff-rank != 0">
-						<xsl:value-of select="visiting-team/team-rank/@playoff-rank"/>
-					</xsl:if>
-				</visitor-playoff-rank>
-				
-				<visitor-city>
-					<xsl:value-of select="visiting-team/team-city/@city"/>
-				</visitor-city>
-				
-				<visitor-score>
-
-				</visitor-score>
-			</xsl:element>
-
-		</xsl:for-each>
-
+	<xsl:template match="/sports-statistics">
+    	<games>
+            <xsl:for-each select="//cfb-score">
+                <xsl:element name="global-id-{gamecode/@global-id}">
+                    <game-status>
+                        <xsl:value-of select="gamestate/@status"/>
+                    </game-status>
+                    
+                    <time>
+                        <xsl:choose>
+                        <xsl:when test="not(gamestate/@second)">15:00</xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
+                        </xsl:otherwise>
+                        </xsl:choose>
+                    </time>
+                    
+					<game-details>
+                        <xsl:choose>
+                        <xsl:when test="gamestate/@status = 'Pre-Game'">
+                        	<xsl:value-of select="time/@hour - (12 * (time/@hour > 12)) + (12 * (time/@hour = 0))" />:<xsl:value-of select="time/@minute"/> <xsl:value-of select="substring(' AM PM', 3 + (time/@hour >= 12), 3)" />
+                        </xsl:when>
+                        <xsl:when test="gamestate/@status = 'In-Game'">
+                        	<xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
+<xsl:if test="gamestate/@quarter = 1"> - 1st Qtr</xsl:if>
+<xsl:if test="gamestate/@quarter = 2"> - 2nd Qtr</xsl:if>
+<xsl:if test="gamestate/@quarter = 3"> - 3rd Qtr</xsl:if>
+<xsl:if test="gamestate/@quarter = 4"> - 4th Qtr</xsl:if>
+                        </xsl:when>
+                        <xsl:when test="gamestate/@status = 'Halftime'">Halftime</xsl:when>
+                        <xsl:when test="gamestate/@status = 'Final'">Final
+<xsl:if test="date/@day = 1"> - Mon</xsl:if>
+<xsl:if test="date/@day = 2"> - Tues</xsl:if>
+<xsl:if test="date/@day = 3"> - Wed</xsl:if>
+<xsl:if test="date/@day = 4"> - Thurs</xsl:if>
+<xsl:if test="date/@day = 5"> - Fri</xsl:if>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="gamestate/@minute"/>:<xsl:value-of select="gamestate/@second"/>
+                        </xsl:otherwise>
+                        </xsl:choose>
+                    </game-details>
+                    
+                    <quarter>
+                        <xsl:value-of select="gamestate/@quarter"/>
+                    </quarter>
+                    
+                    <start-time>
+                  		<xsl:value-of select="time/@hour - (12 * (time/@hour > 12)) + (12 * (time/@hour = 0))" />:<xsl:value-of select="time/@minute"/> <xsl:value-of select="substring(' AM PM', 3 + (time/@hour >= 12), 3)" />
+                    </start-time>
+                    
+                    <home-rank>
+                        <xsl:if test="home-team/team-rank/@rank != 0">
+                            <xsl:value-of select="home-team/team-rank/@rank"/>
+                        </xsl:if>
+                    </home-rank>
+                    
+                    <home-playoff-rank>
+                        <xsl:if test="home-team/team-rank/@playoff-rank != 0">
+                            <xsl:value-of select="home-team/team-rank/@playoff-rank"/>
+                        </xsl:if>
+                    </home-playoff-rank>
+                    
+                    <home-city>
+                        <xsl:value-of select="home-team/team-city/@city"/>
+                    </home-city>
+                    
+                    <home-score>
+    					<xsl:value-of select="home-team/linescore/@score"/>
+                    </home-score>
+                    
+                    <visitor-rank>
+                        <xsl:if test="visiting-team/team-rank/@rank != 0">
+                            <xsl:value-of select="visiting-team/team-rank/@rank"/>
+                        </xsl:if>
+                    </visitor-rank>
+                    
+                    <visitor-playoff-rank>
+                        <xsl:if test="visiting-team/team-rank/@playoff-rank != 0">
+                            <xsl:value-of select="visiting-team/team-rank/@playoff-rank"/>
+                        </xsl:if>
+                    </visitor-playoff-rank>
+                    
+                    <visitor-city>
+                        <xsl:value-of select="visiting-team/team-city/@city"/>
+                    </visitor-city>
+                    
+                    <visitor-score>
+    					<xsl:value-of select="visiting-team/linescore/@score"/>
+                    </visitor-score>
+                </xsl:element>
+    
+            </xsl:for-each>
+		</games>
 	</xsl:template>
 </xsl:stylesheet>
