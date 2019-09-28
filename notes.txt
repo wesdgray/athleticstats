@@ -1,0 +1,9 @@
+https://www.w3schools.com/xml/schema_dtypes_date.asp
+
+https://learning.oreilly.com/library/view/XSLT,+2nd+Edition/9780596527211/re54.html
+  <xsl:variable name="LilysBirthday" as="xs:time"
+      select="xs:time('00:43:00-05:00')"/>
+    <xsl:variable name="format" 
+      select="'[h1]:[m01]:[s01] [P]'"/>
+
+https://xslttest.appspot.com/
