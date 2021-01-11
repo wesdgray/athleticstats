@@ -25,7 +25,7 @@ Function Backup-Stats
         {
             if ($LASTEXITCODE -ge 8) 
             {
-                $host.privatedata.ProgressBackgroundColor = $ProgressBarColorFailure
+                $host.privatedata.ProgressBackgroundColor = $ProgressBarColorError
                 $status = 'BAD'
             }
             else
