@@ -1,12 +1,12 @@
 # This requires PDFtoPrinter.exe
-
+# RB 
 $Copiers = `
 @{
-    'CFP Left Copier'   = '192.168.102.14';
-    'CFP Middle Copier' = '192.168.102.15';
-    'CFP Right Copier'  = '192.168.102.16';
-    #'CFP SW Press Box'  = '192.168.102.11';
-    'CFP Photo Room'    = '192.168.102.18';
+    'Media Tent'    = '10.1.1.223';
+    'South Press 1' = '10.1.1.215';
+    'South Press 2' = '10.1.1.216';
+    'North Press 1' = '10.1.1.217';
+    'North Press 2' = '10.1.1.218';
 }
 
 Function New-BulkPrinters($Copiers)
