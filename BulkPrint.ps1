@@ -2,11 +2,11 @@
 # RB 
 $Copiers = `
 @{
-    'Media Tent'    = '10.1.1.223';
-    'South Press 1' = '10.1.1.215';
-    'South Press 2' = '10.1.1.216';
-    'North Press 1' = '10.1.1.217';
-    'North Press 2' = '10.1.1.218';
+    'RB Media Tent'    = '10.1.1.223';
+    'RB South Press 1' = '10.1.1.215';
+    'RB South Press 2' = '10.1.1.216';
+    'RB North Press 1' = '10.1.1.217';
+    'RB North Press 2' = '10.1.1.218';
 }
 
 $DriverPath = 'C:\users\WesGray\Downloads\WHQL Universal Print Driver_64bit'
@@ -34,11 +34,11 @@ Function Add-BulkPrinterDriver($DriverPath, $DriverFile, $DriverName)
     }
 }
 
-Function New-BulkPrinters($Copiers)
+Function New-BulkPrinters($Copiers, $Driver)
 {
     foreach( $kv in $Copiers.GetEnumerator() )
     {
-        New-CustomPrinter -Name $kv.Key -IP $kv.Value
+        New-CustomPrinter -Name $kv.Key -IP $kv.Value -Driver $Driver
     }
 }
 
@@ -47,7 +47,7 @@ Function New-CustomPrinter
     param(
         $Name,
         $IP,
-        $Driver='Xerox WorkCentre 7500 Series Class Driver'
+        $Driver
     )
 
     Add-PrinterPort -Name $Name -PrinterHostAddress $IP 
