@@ -9,6 +9,31 @@ $Copiers = `
     'North Press 2' = '10.1.1.218';
 }
 
+$DriverPath = 'C:\users\WesGray\Downloads\WHQL Universal Print Driver_64bit'
+$DriverFile = 'sfweMENU.inf'
+$DriverName = 'SHARP UD2 PCL6'
+
+Function Add-BulkPrinterDriver($DriverPath, $DriverFile, $DriverName)
+{
+    if (pnputil.exe /enum-drivers | select-string $DriverFile -Quiet) 
+    { 
+        Write-Host "Driver $DriverFile is already installed to DriverStore"
+    }
+    else 
+    {
+        pnputil /a "$DriverPath\$DriverFile"
+    }
+    
+    if (Get-PrinterDriver -Name $DriverName)
+    {
+        Write-Host "Driver $DriverName has already been added as a Printer Driver"
+    }
+    else
+    {
+        Add-PrinterDriver -Name $DriverName
+    }
+}
+
 Function New-BulkPrinters($Copiers)
 {
     foreach( $kv in $Copiers.GetEnumerator() )
