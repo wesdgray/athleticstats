@@ -94,7 +94,7 @@ Function Add-BulkVirtualPrinter($Names, $Path, $Binary)
     {
         foreach($Name in $Names)
         {
-            New-Item -Type SymbolicLink -Path $Path -Name $Name -Value $Binary
+            Copy-Item $Binary "$Path\$Name.exe"
         }
     }
     else 
@@ -108,15 +108,15 @@ Function Invoke-BroadcastPrint
     param(
         [string[]]$printers,
         $file,
-        $exe = 'C:\bin\PDFtoPrinter.exe'
+        $Path = 'C:\bin'
     )
 
     if($printers -and $file)
     {
         foreach($printer in $printers)
         {
-            "$exe `"$file`" `"$printer`""
-            Invoke-Expression "$exe `"$file`" `"$printer`""
+            "`"$Path\$printer.exe`" `"$file`" `"$printer`""
+            Invoke-Expression "&`"$Path\$printer.exe`" `"$file`" `"$printer`""
         }
     }
 }
