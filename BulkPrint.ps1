@@ -9,7 +9,7 @@ $Copiers = `
     'RB North Press 2' = '10.1.1.218';
 }
 
-$DriverPath = 'C:\users\WesGray\Downloads\WHQL Universal Print Driver_64bit'
+$DriverPath = 'C:\Users\wesgr\Downloads\WHQL Universal Print Driver_64bit'
 $DriverFile = 'sfweMENU.inf'
 $DriverName = 'SHARP UD2 PCL6'
 
@@ -88,6 +88,21 @@ Function Invoke-PrintQueue
     Remove-Item $files
 }
 
+Function Add-BulkVirtualPrinter($Names, $Path, $Binary)
+{
+    if ($Names -and $Path -and $Binary)
+    {
+        foreach($Name in $Names)
+        {
+            New-Item -Type SymbolicLink -Path $Path -Name $Name -Value $Binary
+        }
+    }
+    else 
+    {
+        Write-Error "Provide all arguments"
+    }
+}
+
 Function Invoke-BroadcastPrint
 {
     param(
@@ -102,8 +117,6 @@ Function Invoke-BroadcastPrint
         {
             "$exe `"$file`" `"$printer`""
             Invoke-Expression "$exe `"$file`" `"$printer`""
-            Start-Sleep -Seconds 3
-            
         }
     }
 }
