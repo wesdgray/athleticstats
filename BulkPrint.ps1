@@ -1,12 +1,22 @@
 # This requires PDFtoPrinter.exe
 # RB 
+# $Copiers = `
+# @{
+#     'RB Media Tent'    = '10.1.1.223';
+#     'RB South Press 1' = '10.1.1.215';
+#     'RB South Press 2' = '10.1.1.216';
+#     'RB North Press 1' = '10.1.1.217';
+#     'RB North Press 2' = '10.1.1.218';
+# }
+# CFP Indianapolis
 $Copiers = `
 @{
-    'RB Media Tent'    = '10.1.1.223';
-    'RB South Press 1' = '10.1.1.215';
-    'RB South Press 2' = '10.1.1.216';
-    'RB North Press 1' = '10.1.1.217';
-    'RB North Press 2' = '10.1.1.218';
+	'CFP Press 1' = '172.26.4.11';
+	'CFP Press 2' = '172.26.4.12';
+	'CFP Press 3' = '172.26.4.15';
+	'CFP Press 4' = '172.26.4.16';
+	'CFP Aux 1'   = '172.26.4.13';
+	'CFP Aux 2'   = '172.26.4.14';
 }
 
 $DriverPath = 'C:\Users\wesgr\Downloads\WHQL Universal Print Driver_64bit'
