@@ -11,12 +11,12 @@
 # CFP Indianapolis
 $Copiers = `
 @{
-	'CFP Press 1' = '172.26.4.11';
-	'CFP Press 2' = '172.26.4.12';
-	'CFP Press 3' = '172.26.4.15';
-	'CFP Press 4' = '172.26.4.16';
-	'CFP Aux 1'   = '172.26.4.13';
-	'CFP Aux 2'   = '172.26.4.14';
+	'CFP Press 1'   = '172.26.4.11'; # Press Box
+	'CFP Press 2'   = '172.26.4.12';
+	'CFP Digital 1' = '172.26.4.15'; # Event Level
+	'CFP Digital 2' = '172.26.4.16';
+	'CFP Aux 1'     = '172.26.4.13'; # Terrace Level
+	'CFP Aux 2'     = '172.26.4.14';
 }
 
 $DriverPath = 'C:\Users\wesgr\Downloads\WHQL Universal Print Driver_64bit'
