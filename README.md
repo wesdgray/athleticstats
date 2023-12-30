@@ -1,7 +1,7 @@
 # Gameday Guide
 
 ## Checklist
-[] Printing
-[] Scoreboard Upload
-[] FTP/Cloud Upload
-[] Ethernet
+- [ ] Printing
+- [ ] Scoreboard Upload
+- [ ] FTP/Cloud Upload
+- [ ] Ethernet
