@@ -1,5 +1,10 @@
 # Gameday Guide
 
+## Important Terms
+### Input Computer
+- Stats are entered here.
+- XML is generated
+- XML is sent
 ## Checklist
 - [ ] Printing
 - [ ] Scoreboard Upload (confirm with scoreboard people e.g. Daktronics/Show Control) 
@@ -20,6 +25,9 @@ XML file is dropped to a shared folder on the Venus computer \\10.20.1.62\Footba
 Live clock could come from a local device connected to scoreboard controller e.g. Allsport or from the cloud.
 Cloud uses a bot id to connect.
 
-## FTP/Cloud
+### FTP/Cloud
 - statbroadcast through listnr
 - Sidearm sports 
+
+### Printing
+- Share the folder on the input computer
