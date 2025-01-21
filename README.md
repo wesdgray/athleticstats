@@ -13,6 +13,7 @@
   - [ ] Local xml file scoreboard (In Arena Utility IAU)
   - [ ] Sidearm sports (linked via NCAA game ID)
 - [ ] Clock (confirm weeks before how this works)
+- [ ] System Clock Timezone
 - [ ] Ethernet
 - [ ] Power Strips
 - [ ] USB Ethernet Adapters
@@ -21,9 +22,11 @@
 ### Scoreboard
 For Rose Bowl we use Daktronics. 
 XML file is dropped to a shared folder on the Venus computer \\10.20.1.62\Football
+some venues use statbroadcast to get the data
 
 Live clock could come from a local device connected to scoreboard controller e.g. Allsport or from the cloud.
 Cloud uses a bot id to connect.
+
 
 ### FTP/Cloud
 - statbroadcast through listnr
